@@ -2,7 +2,7 @@ import turtle
 import time
 from random import *
 
-DELAY = 0.12
+DELAY = 0.15
 WIDTH = 800
 HEIGHT = 600
 SPEED = 20
@@ -131,9 +131,11 @@ def moveSnake():
     global snake, headS
     for s in snake:
         s.move()
-        if(headS.xcor() == WIDTH/2 or headS.xcor() == -WIDTH/2 or headS.ycor() == HEIGHT/2 or headS.ycor() == -HEIGHT/2):
-            resetGame()
-            break
+        if(s.xcor() == WIDTH/2 or s.xcor() == -WIDTH/2):
+            s.setposition(-s.xcor(), s.ycor())
+        if(s.ycor() == HEIGHT/2 or s.ycor() == -HEIGHT/2):
+            s.setposition(s.xcor(), -s.ycor())
+
         if(s is not headS and (headS.xcor() == s.head.xcor() and headS.ycor() == s.head.ycor())):
             resetGame()
             break
